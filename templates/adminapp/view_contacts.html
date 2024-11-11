@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+{% extends 'Navbar/projectnavbar.html' %}
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact List</title>
+    <style>
+        h2 {
+            color: #333;
+            font-size: 24px;
+            margin-bottom: 20px;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        a {
+            color: #007bff;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        li {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: Arial, sans-serif;
+        }
+        .actions {
+            display: flex;
+            gap: 10px;
+        }
+        .actions a {
+            background-color: #007bff;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 13px;
+        }
+        .actions a:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+{% block body %}
+<h2>Contact List</h2>
+<a href="?action=add">Add New Contact</a>
+<ul>
+    {% for contact in contacts %}
+    <li>
+        <span>{{ contact.name }} - {{ contact.email }} - {{ contact.phone }}</span>
+        <div class="actions">
+            <a href="?action=delete&id={{ contact.id }}">Delete</a>
+            <a href="?action=email&id={{ contact.id }}">Send to Email</a>
+        </div>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}
+</body>
+</html>
